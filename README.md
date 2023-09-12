@@ -62,3 +62,42 @@ These are set up to send back data for either every engineer or every certificat
 These are set up to send back data for a single engineer or certificate by id.
 
 Will respond with a 404 error if no engineer or certificate is found.
+
+## BONUS Deliverables
+
+### Instructor Model
+
+Create a new model called Instructor. The Instructor has these attributes:
+
+| Column      | Type      |
+|-------------|-----------|
+| id          | integer   |
+| name        | string    |
+| created_at  | datetime  |
+| updated_at  | datetime  |
+
+The `created_at` and `updated_at` columns should automatically get filled in with the server time. This [stack overflow](https://stackoverflow.com/questions/13370317/sqlalchemy-default-datetime) should be helpful.
+
+Additionally, the name cannot be blank.
+
+### Instructor - Certificate Relationship
+
+The instructor has many certificates and a certificate belongs to an instructor. You may have to update the Certificate model to make this work.
+
+### Instructor - Engineer Relationship
+
+The instructor has many engineers through certificates and an engineer has many instructors through certificates. The relationship looks like this:
+
+```
+Instructor --< Certificate >-- Engineer
+```
+
+You will more than likely need the  `association_proxy` to make this work which is already imported in `models.py`.
+
+### Instructor Routes
+
+Build out two routes for the Instructor:
+
+The `GET /instructors` should return the instructor with all their attributes *and* all of their associated engineers.
+
+The `GET /instructors/:id` should return the instructor by an id with all their attributes *and* all of their associated engineers. If no instructor is found, the server responds with a 404 error.
