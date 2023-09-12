@@ -22,8 +22,10 @@ class Engineer(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "title": self.title,
-            "expiration_year": self.expiration_year
+            "name": self.name,
+            "specialty": self.specialty,
+            "age": self.age,
+            "certificates": [ cert.to_dict() for cert in self.certificates ]
         }
 
 
