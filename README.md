@@ -53,6 +53,8 @@ You can hit your routes by first running the server and then making a request wi
 
 Please note the routes will throw an error if you don't complete your models first.
 
+In addition to these you have a `/debug` route which will pause code execution and open up `ipdb` for testing and debugging. To use this, go to `http://localhost:5555/debug` in the browser and then check your terminal.
+
 ### GET /engineers and GET /certificates
 
 These are set up to send back data for either every engineer or every certificate as a dictionary.

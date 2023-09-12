@@ -49,5 +49,12 @@ def certificates_show(id):
     else:
         return {"message": "404 Not Found"}, 404
 
+# DEBUG ROUTE #
+
+@app.get('/debug')
+def debug():
+    import ipdb; ipdb.set_trace()
+    return {"message": "Debugging completed!"}
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
