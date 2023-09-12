@@ -49,6 +49,7 @@ def certificates_show(id):
     else:
         return {"message": "404 Not Found"}, 404
 
+<<<<<<< HEAD
 # BONUS --- INSTRUCTORS CRUD #
 
 @app.get('/instructors')
@@ -64,6 +65,8 @@ def instructors_show(id):
     else:
         return {"message": "404 Not Found"}, 404
 
+=======
+>>>>>>> main
 # DEBUG ROUTE #
 
 @app.get('/debug')
