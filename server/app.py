@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from models import db, Engineer, Certificate
+from models import db, Engineer, Certificate, Instructor
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -48,6 +48,28 @@ def certificates_show(id):
         return certificate.to_dict(), 200
     else:
         return {"message": "404 Not Found"}, 404
+
+# BONUS --- INSTRUCTORS CRUD #
+
+@app.get('/instructors')
+def instructors_index():
+    instructors = Instructor.query.all()
+    return [instructor.to_dict() for instructor in instructors], 200
+
+@app.get('/instructors/<int:id>')
+def instructors_show(id):
+    instructor = Instructor.query.filter(Instructor.id == id).first()
+    if instructor:
+        return instructor.to_dict(), 200
+    else:
+        return {"message": "404 Not Found"}, 404
+
+# DEBUG ROUTE #
+
+@app.get('/debug')
+def debug():
+    import ipdb; ipdb.set_trace()
+    return {"message": "Debugging completed!"}
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
