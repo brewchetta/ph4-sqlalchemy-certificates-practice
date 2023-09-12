@@ -19,7 +19,35 @@ db.init_app(app)
 def index():
     return "Hello world"
 
-# write your routes here!
+# ENGINEERS CRUD #
+
+@app.get('/engineers')
+def engineers_index():
+    engineers = Engineer.query.all()
+    return [eng.to_dict() for eng in engineers], 200
+
+@app.get('/engineers/<int:id>')
+def engineers_show(id):
+    engineer = Engineer.query.filter(Engineer.id == id).first()
+    if engineer:
+        return engineer.to_dict(), 200
+    else:
+        return {"message": "404 Not Found"}, 404
+
+# CERTIFICATES CRUD #
+
+@app.get('/certificates')
+def certificates_index():
+    certificates = Certificate.query.all()
+    return [cert.to_dict() for cert in certificates], 200
+
+@app.get('/certificates/<int:id>')
+def certificates_show(id):
+    certificate = Certificate.query.filter(Certificate.id == id).first()
+    if certificate:
+        return certificate.to_dict(), 200
+    else:
+        return {"message": "404 Not Found"}, 404
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
