@@ -21,7 +21,7 @@ if __name__ == '__main__':
         engineers = []
 
         for num in range(10):
-            engineer = Engineer(name=faker.name(), specialty=random.choice(specialties), age=randint(19, 70))
+            engineer = Engineer(name=faker.name(), specialty=random.choice(specialties), age=random.randint(19, 70))
             engineers.append(engineer)
 
         db.session.add_all(engineers)
